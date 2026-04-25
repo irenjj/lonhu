@@ -1,0 +1,21 @@
+{
+  "name": "lonhu",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "npm run clean --if-present",
+    "build": "npm run build --if-present",
+    "check": "npm exec -- biome check --write --error-on-warnings . && if [ -n \"$(find src -type f \\( -name '*.ts' -o -name '*.tsx' -o -name '*.mts' -o -name '*.cts' \\) -print -quit 2>/dev/null)\" ]; then npm exec -- tsc --noEmit; else echo \"No TypeScript source files found, skip tsc check.\"; fi",
+    "test": "npm run test --if-present"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.13",
+    "@types/node": "^24.3.0",
+    "@typescript/native-preview": "7.0.0-dev.20260120.1",
+    "shx": "^0.4.0",
+    "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

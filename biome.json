@@ -1,0 +1,29 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.4.13/schema.json",
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "style": {
+        "useConst": "error",
+        "useNodejsImportProtocol": "off"
+      }
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 120
+  },
+  "files": {
+    "includes": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.mts", "src/**/*.cts"],
+    "ignore": [
+      "node_modules",
+      "**/test-sessions.ts",
+      "**/models.generated.ts",
+      "**/dist/**"
+    ]
+  }
+}

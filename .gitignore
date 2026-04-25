@@ -1,24 +1,40 @@
 node_modules/
 dist/
 coverage/
-
-package-lock.json
-
-.DS_Store
+tmp/
+.tmp/
+.cache/
+.turbo/
+.vite/
+out/
+build/
+*.tsbuildinfo
 *.log
 *.tmp
 *.temp
+
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+.DS_Store
+Thumbs.db
 
 .env
 .env.*
 !.env.example
 
-.cache/
-.tmp/
-.turbo/
-.vite/
-
-*.tsbuildinfo
-
+# IDE / editor
 .idea/
 .vscode/
+.zed/
+*.swp
+*.swo
+*~
+
+# Runtime outputs
+out.log
+
+# Package / generated artifacts
+packages/*/dist/
+*.zip
