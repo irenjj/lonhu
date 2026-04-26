@@ -1,5 +1,4 @@
 import { getModel } from "lonhu/llm/models";
-import { stream } from "lonhu/llm/stream";
 import type { Context, Model } from "lonhu/llm/types";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 

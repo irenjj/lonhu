@@ -13,14 +13,19 @@
     }
   },
   "scripts": {
+    "prepare": "husky",
     "clean": "npm run clean --if-present",
     "build": "npm run build --if-present",
     "check": "npm exec -- biome check --write --error-on-warnings . && if [ -n \"$(find src test -type f \\( -name '*.ts' -o -name '*.tsx' -o -name '*.mts' -o -name '*.cts' \\) -print -quit 2>/dev/null)\" ]; then npm exec -- tsc --noEmit; else echo \"No TypeScript source files found, skip tsc check.\"; fi",
+    "check:staged": "npm exec -- biome check --write --staged --files-ignore-unknown=true --no-errors-on-unmatched",
     "format": "npm exec -- biome format --write .",
+    "format:staged": "npm exec -- biome format --write --staged --files-ignore-unknown=true --no-errors-on-unmatched",
     "test": "vitest --run test/unit/llm",
     "test:unit": "vitest --run test/unit/llm",
     "test:integration": "PI_NO_LOCAL_LLM=1 vitest --run test/integration/llm",
-    "test:all": "npm run test:unit && npm run test:integration"
+    "test:all": "npm run test:unit && npm run test:integration",
+    "verify:push": "npm run check && npm run test:unit",
+    "ci": "npm run check && npm run test:all"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.90.0",
@@ -40,6 +45,7 @@
     "@types/node": "^24.3.0",
     "@typescript/native-preview": "7.0.0-dev.20260120.1",
     "canvas": "^3.2.0",
+    "husky": "^9.1.7",
     "shx": "^0.4.0",
     "tsx": "^4.20.3",
     "typescript": "^5.9.2",

@@ -3,9 +3,9 @@ import { streamOpenAIResponses } from "lonhu/llm/providers/openai-responses";
 import type { Model } from "lonhu/llm/types";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-type CapturedHeaders = Headers | string[][] | Record<string, string | readonly string[]> | undefined;
+type CapturedHeaders = RequestInit["headers"];
 
-function getHeader(headers: CapturedHeaders, name: string): string | null {
+function getHeader(headers: CapturedHeaders | undefined, name: string): string | null {
   if (!headers) return null;
   if (headers instanceof Headers) return headers.get(name);
 
@@ -15,7 +15,8 @@ function getHeader(headers: CapturedHeaders, name: string): string | null {
     return match?.[1] ?? null;
   }
 
-  for (const [key, value] of Object.entries(headers)) {
+  for (const [key, value] of Object.entries(headers as Record<string, string | readonly string[] | undefined>)) {
+    if (value === undefined) continue;
     if (key.toLowerCase() === lowerName) return typeof value === "string" ? value : value.join(", ");
   }
   return null;
