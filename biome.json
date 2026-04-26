@@ -18,12 +18,16 @@
     "lineWidth": 120
   },
   "files": {
-    "includes": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.mts", "src/**/*.cts"],
-    "ignore": [
-      "node_modules",
-      "**/test-sessions.ts",
-      "**/models.generated.ts",
-      "**/dist/**"
+    "includes": [
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "src/**/*.mts",
+      "src/**/*.cts",
+      "test/**/*.ts",
+      "!**/node_modules",
+      "!**/dist",
+      "!**/test-sessions.ts",
+      "!**/models.generated.ts"
     ]
   }
 }

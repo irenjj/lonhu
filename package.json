@@ -2,18 +2,48 @@
   "name": "lonhu",
   "private": true,
   "type": "module",
+  "exports": {
+    "./llm": {
+      "types": "./src/llm/index.ts",
+      "default": "./src/llm/index.ts"
+    },
+    "./llm/*": {
+      "types": "./src/llm/*.ts",
+      "default": "./src/llm/*.ts"
+    }
+  },
   "scripts": {
     "clean": "npm run clean --if-present",
     "build": "npm run build --if-present",
-    "check": "npm exec -- biome check --write --error-on-warnings . && if [ -n \"$(find src -type f \\( -name '*.ts' -o -name '*.tsx' -o -name '*.mts' -o -name '*.cts' \\) -print -quit 2>/dev/null)\" ]; then npm exec -- tsc --noEmit; else echo \"No TypeScript source files found, skip tsc check.\"; fi",
-    "test": "npm run test --if-present"
+    "check": "npm exec -- biome check --write --error-on-warnings . && if [ -n \"$(find src test -type f \\( -name '*.ts' -o -name '*.tsx' -o -name '*.mts' -o -name '*.cts' \\) -print -quit 2>/dev/null)\" ]; then npm exec -- tsc --noEmit; else echo \"No TypeScript source files found, skip tsc check.\"; fi",
+    "format": "npm exec -- biome format --write .",
+    "test": "vitest --run test/unit/llm",
+    "test:unit": "vitest --run test/unit/llm",
+    "test:integration": "PI_NO_LOCAL_LLM=1 vitest --run test/integration/llm",
+    "test:all": "npm run test:unit && npm run test:integration"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.90.0",
+    "@aws-sdk/client-bedrock-runtime": "^3.1030.0",
+    "@google/genai": "^1.40.0",
+    "@mistralai/mistralai": "^2.2.0",
+    "chalk": "^5.6.2",
+    "openai": "6.26.0",
+    "partial-json": "^0.1.7",
+    "proxy-agent": "^6.5.0",
+    "typebox": "^1.1.24",
+    "undici": "^7.19.1",
+    "zod-to-json-schema": "^3.24.6"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.13",
     "@types/node": "^24.3.0",
     "@typescript/native-preview": "7.0.0-dev.20260120.1",
+    "canvas": "^3.2.0",
     "shx": "^0.4.0",
-    "typescript": "^5.9.2"
+    "tsx": "^4.20.3",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
   },
   "engines": {
     "node": ">=20.0.0"
