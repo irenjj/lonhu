@@ -28,7 +28,9 @@ if (typeof process !== "undefined" && (process.versions?.node || process.version
 // Antigravity OAuth credentials (different from Gemini CLI)
 const decode = (s: string) => atob(s);
 const CLIENT_ID = decode(
-  ["MTA3MTAwNjA2MDU5MS10bWhzc2luMmgyMWxjcmUy", "MzV2dG9sb2poNGc0MDNlcC5hcHBzLmdvb2dsZXVz", "ZXJjb250ZW50LmNvbQ=="].join(""),
+  ["MTA3MTAwNjA2MDU5MS10bWhzc2luMmgyMWxjcmUy", "MzV2dG9sb2poNGc0MDNlcC5hcHBzLmdvb2dsZXVz", "ZXJjb250ZW50LmNvbQ=="].join(
+    "",
+  ),
 );
 const CLIENT_SECRET = decode(["R09DU1BYLUs1OEZX", "UjQ4NkxkTEoxbUxC", "OHNYQzR6NnFEQWY="].join(""));
 const REDIRECT_URI = "http://localhost:51121/oauth-callback";
