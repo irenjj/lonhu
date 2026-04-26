@@ -50,7 +50,6 @@ import { streamGoogleVertex } from "lonhu/llm/providers/google-vertex";
 import type { Context, Model } from "lonhu/llm/types";
 
 const REALISTIC_TEST_API_KEY = "test-google-api-key-not-real";
-const REALISTIC_TEST_API_KEY = "test-google-api-key-not-real";
 const model = getModel("google-vertex", "gemini-3-flash-preview");
 const context: Context = {
   messages: [{ role: "user", content: "hello", timestamp: Date.now() }],
