@@ -213,6 +213,7 @@ describe("Cache Retention (PI_CACHE_RETENTION)", () => {
     it("should omit prompt_cache_retention when supportsLongCacheRetention is false", async () => {
       const model = {
         ...getModel("openai", "gpt-4o-mini"),
+        baseUrl: "https://my-proxy.example.com/v1",
         compat: { supportsLongCacheRetention: false },
       };
       let capturedPayload: any = null;
